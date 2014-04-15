@@ -1,24 +1,25 @@
-var M = [
-	[0, 0, 0, 0],
-	[0, 0, 0, 0],
-	[0, 0, 0, 0],
-	[0, 0, 0, 0]
-];
+var M = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
 
 var startFlag = 0;
 
 $(document).keydown(function(event){
-	if (startFlag == 0){
-			Generate2Or4();
-			Generate2Or4();
-			startFlag = 1;
-		}
-		var htmlStr="<table border = '1' width = '400' height = '400' align='center'><tr><td>"+M[0][0]+"</td><td>"+M[0][1]+"</td><td>"+M[0][2]+"</td><td>"+M[0][3]+"</td></tr><tr><td>"+M[1][0]+"</td><td>"+M[1][1]+"</td><td>"+M[1][2]+"</td><td>"+M[1][3]+"</td></tr><tr><td>"+M[2][0]+"</td><td>"+M[2][1]+"</td><td>"+M[2][2]+"</td><td>"+M[2][3]+"</td></tr><tr><td>"+M[3][0]+"</td><td>"+M[3][1]+"</td><td>"+M[3][2]+"</td><td>"+M[3][3]+"</td></tr></table>";
-		$('#table').html(htmlStr);
-		var MtheOldOne = M;
-		Mmove(event.which);
-		Generate2Or4();
+	Mmove(event.which);
+	Generate2Or4();
+	drawTable();
 });
+
+function drawTable(){
+	var MOld = M;
+	for(i = 0; i < 4; i++){
+		for(j = 0; j < 4; j++){
+			if(M[i][j] == 0)
+				M[i][j] = "";
+		}
+	}
+	var htmlStr="<table border = '1' width = '400' height = '400' align='center'><tr><td width = '100' height = '100'>"+M[0][0]+"</td><td width = '100' height = '100'>"+M[0][1]+"</td><td width = '100' height = '100'>"+M[0][2]+"</td><td width = '100' height = '100'>"+M[0][3]+"</td></tr><tr><td width = '100' height = '100'>"+M[1][0]+"</td><td width = '100' height = '100'>"+M[1][1]+"</td><td width = '100' height = '100'>"+M[1][2]+"</td><td width = '100' height = '100'>"+M[1][3]+"</td></tr><tr><td width = '100' height = '100'>"+M[2][0]+"</td><td width = '100' height = '100'>"+M[2][1]+"</td><td width = '100' height = '100'>"+M[2][2]+"</td><td width = '100' height = '100'>"+M[2][3]+"</td></tr><tr><td width = '100' height = '100'>"+M[3][0]+"</td><td width = '100' height = '100'>"+M[3][1]+"</td><td width = '100' height = '100'>"+M[3][2]+"</td><td width = '100' height = '100'>"+M[3][3]+"</td></tr></table>";
+	$('#table').html(htmlStr);
+	M = MOld;
+}
 
 function Generate2Or4(){
 	var randomnumber = Math.floor(Math.random()*11);
@@ -71,6 +72,7 @@ function Mmove(d){
 				}
 			}
 			n = 0;
+			N = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
 			for(j = 0; j < 4; j++){
 				if(M[i][j]!=0){
 					N[i][n] = M[i][j];
@@ -83,32 +85,33 @@ function Mmove(d){
 		}
 	}
 	else if (d == 38){
-		var N = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
+		var N = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
 		for(j = 0; j < 4; j++){
-			var n = 0;
-			for(i = 0; i < 4; i++){
-				if(M[i][j]!=0){
-					N[n][j] = M[i][j];
+			var n = 0
+			for(i = 0; i<4 ; i++){
+				if(M[i][j] != 0){
+					N[n][j] = M [i][j];
 					n++;
 				}
 			}
-			for(i = 0; i < 4; i++){
+			for(i = 0; i< 4; i++){
 				M[i][j] = N[i][j];
 			}
 			for(i = 0; i < 4; i++){
-				if(M[i][j]!=0 && M[i][j]==M[i+1][j]){
-					M[i][j] = 2 * M[i][j];
+				if(M[i][j]!=0 && M[i][j] == M[i+1][j]){
+					M[i][j] = 2*M[i][j];
 					M[i+1][j] = 0;
 				}
 			}
 			n = 0;
-			for(i = 0; i < 4; i++){
-				if(M[i][j]!=0){
-					N[n][j] = M[i][j];
+			N = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+			for(i = 0; i<4 ; i++){
+				if(M[i][j] != 0){
+					N[n][j] = M [i][j];
 					n++;
 				}
 			}
-			for(i = 0; i < 4; i++){
+			for(i = 0; i< 4; i++){
 				M[i][j] = N[i][j];
 			}
 		}
@@ -133,6 +136,7 @@ function Mmove(d){
 				}
 			}
 			n = 3;
+			N = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
 			for(j = 3; j > -1; j--){
 				if(M[i][j]!=0){
 					N[i][n] = M[i][j];
@@ -164,6 +168,7 @@ function Mmove(d){
 				}
 			}
 			n = 3;
+			N = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
 			for(i = 3; i > -1; i--){
 				if(M[i][j]!=0){
 					N[n][j] = M[i][j];
@@ -175,4 +180,11 @@ function Mmove(d){
 			}
 		}
 	}
+}
+
+function startGame(){
+	M = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
+	Generate2Or4();
+	Generate2Or4();
+	drawTable();
 }
