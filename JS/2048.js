@@ -18,8 +18,11 @@ $(document).keydown(function(event){
 		$('#table').html(htmlStr);
 		alert(step);
 		step++;
+		var MtheOldOne = M;
 		Mmove(event.which);
-		Generate2Or4();
+		if (MtheOldOne != M){
+			Generate2Or4();
+		}
 });
 
 function Generate2Or4(){
@@ -56,13 +59,23 @@ function Mmove(d){
 	if (d == 37){
 		var N = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
 		for(i = 0; i < 4; i++){
+			var n = 0;
+			for(j = 0; j < 4; j++){
+				if(M[i][j]!=0){
+					N[i][n] = M[i][j];
+					n++;
+				}
+			}
+			for(j = 0; j < 4; j++){
+				M[i][j] = N[i][j];
+			}
 			for(j = 0; j < 4; j++){
 				if(M[i][j]!=0 && M[i][j]==M[i][j+1]){
 					M[i][j] = 2 * M[i][j];
 					M[i][j+1] = 0;
 				}
 			}
-			var n = 0;
+			n = 0;
 			for(j = 0; j < 4; j++){
 				if(M[i][j]!=0){
 					N[i][n] = M[i][j];
