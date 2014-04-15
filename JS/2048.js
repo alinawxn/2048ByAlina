@@ -13,7 +13,7 @@ $(document).keydown(function(event){
 			Generate2Or4();
 			startFlag = 1;
 		}
-		var htmlStr="<table border = '1'><tr><td>"+M[0][0]+"</td><td>"+M[0][1]+"</td><td>"+M[0][2]+"</td><td>"+M[0][3]+"</td></tr><tr><td>"+M[1][0]+"</td><td>"+M[1][1]+"</td><td>"+M[1][2]+"</td><td>"+M[1][3]+"</td></tr><tr><td>"+M[2][0]+"</td><td>"+M[2][1]+"</td><td>"+M[2][2]+"</td><td>"+M[2][3]+"</td></tr><tr><td>"+M[3][0]+"</td><td>"+M[3][1]+"</td><td>"+M[3][2]+"</td><td>"+M[3][3]+"</td></tr></table>";
+		var htmlStr="<table border = '1' width = '400' height = '400' align='center'><tr><td>"+M[0][0]+"</td><td>"+M[0][1]+"</td><td>"+M[0][2]+"</td><td>"+M[0][3]+"</td></tr><tr><td>"+M[1][0]+"</td><td>"+M[1][1]+"</td><td>"+M[1][2]+"</td><td>"+M[1][3]+"</td></tr><tr><td>"+M[2][0]+"</td><td>"+M[2][1]+"</td><td>"+M[2][2]+"</td><td>"+M[2][3]+"</td></tr><tr><td>"+M[3][0]+"</td><td>"+M[3][1]+"</td><td>"+M[3][2]+"</td><td>"+M[3][3]+"</td></tr></table>";
 		$('#table').html(htmlStr);
 		var MtheOldOne = M;
 		Mmove(event.which);
