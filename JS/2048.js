@@ -1,5 +1,6 @@
 var M = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
 var startFlag = 0;
+var endFlag = 0;//0-do nothing, 1-win, 2-lose
 
 $(document).keydown(function(event){
 	if (startFlag == 1){
@@ -7,6 +8,19 @@ $(document).keydown(function(event){
 		if(event.which == 37 || event.which == 38 || event.which == 39 || event.which == 40){
 			drawTable();
 		}
+	}
+	if (endFlag == 1){
+		alert("You win!");
+		M = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
+		startFlag = 0;
+		endFlag = 0;
+	}
+	lose();
+	if(endFlag == 2){
+		alert("You lose!");
+		M = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
+		startFlag = 0;
+		endFlag = 0;
 	}
 });
 
@@ -86,8 +100,8 @@ function Mmove(d){
 			//alert("4");
 			for(i = 0; i< 4; i++){
 				M[i][j] = N[i][j];
-				if(N[i][j] != 0){
-				}
+				if (M[i][j] == 2048)
+					endFlag = 1;
 			}
 			//alert("5");
 		}
@@ -136,6 +150,8 @@ function Mmove(d){
 			}
 			for(j = 0; j < 4; j++){
 				M[i][j] = N[i][j];
+				if (M[i][j] == 2048)
+					endFlag = 1;
 			}
 		}
 		for (i = 0;i<4;i++){
@@ -183,6 +199,8 @@ function Mmove(d){
 			}
 			for(j = 3; j > -1; j--){
 				M[i][j] = N[i][j];
+				if (M[i][j] == 2048)
+					endFlag = 1;
 			}
 		}
 		for (i = 0;i<4;i++){
@@ -230,6 +248,8 @@ function Mmove(d){
 			}
 			for(i = 3; i > -1; i--){
 				M[i][j] = N[i][j];
+				if (M[i][j] == 2048)
+					endFlag = 1;
 			}
 		}
 		for (i = 0;i<4;i++){
@@ -252,4 +272,36 @@ function startGame(){
 	Generate2Or4();
 	drawTable();
 	startFlag = 1;
+}
+
+function lose(){
+	if(M[0][0]!=M[0][1]&&M[0][1]!=M[0][2]&&M[0][2]!=M[0][3]){
+		if(M[1][0]!=M[1][1]&&M[1][1]!=M[1][2]&&M[1][2]!=M[1][3]){
+			if(M[2][0]!=M[2][1]&&M[2][1]!=M[2][2]&&M[2][2]!=M[2][3]){
+				if(M[3][0]!=M[3][1]&&M[3][1]!=M[3][2]&&M[3][2]!=M[3][3]){
+					if(M[0][0]!=M[1][0]&&M[1][0]!=M[2][0]&&M[2][0]!=M[3][0]){
+						if(M[0][1]!=M[1][1]&&M[1][1]!=M[2][1]&&M[2][1]!=M[3][1]){
+							if(M[0][2]!=M[1][2]&&M[1][2]!=M[2][2]&&M[2][2]!=M[3][2]){
+								if(M[0][3]!=M[1][3]&&M[1][3]!=M[2][3]&&M[2][3]!=M[3][3]){
+									var Zero = 0;
+									for(i = 0;i<4;i++){
+										for(j=0;j<4;j++){
+											if(M[i][j]!=0){
+												Zero ++;
+											}
+										}
+									}
+									if(Zero == 16){
+										if (endFlag == 0){
+											endFlag = 2;
+									}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
