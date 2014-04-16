@@ -3,10 +3,12 @@ var M = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
 var startFlag = 0;
 
 $(document).keydown(function(event){
-	Mmove(event.which);
-	if(event.which == 37 || event.which == 38 || event.which == 39 || event.which == 40){
-		Generate2Or4();
-		drawTable();
+	if (startFlag == 1){
+		Mmove(event.which);
+		if(event.which == 37 || event.which == 38 || event.which == 39 || event.which == 40){
+			Generate2Or4();
+			drawTable();
+		}
 	}
 });
 
@@ -193,4 +195,5 @@ function startGame(){
 	Generate2Or4();
 	Generate2Or4();
 	drawTable();
+	startFlag = 1;
 }
