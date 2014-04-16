@@ -1,12 +1,10 @@
 var M = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
-
 var startFlag = 0;
 
 $(document).keydown(function(event){
 	if (startFlag == 1){
 		Mmove(event.which);
 		if(event.which == 37 || event.which == 38 || event.which == 39 || event.which == 40){
-			Generate2Or4();
 			drawTable();
 		}
 	}
@@ -51,6 +49,13 @@ function Mmove(d){
 	switch(d){
 		case 38:
 		var N = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+		var MOld=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+		var sameNumber = 0;
+		for (i = 0;i<4;i++){
+			for(j = 0;j<4;j++){
+				MOld[i][j] = M[i][j];
+			}
+		}
 		for(j = 0; j < 4; j++){
 			var n = 0
 			for(i = 0; i<4 ; i++){
@@ -59,8 +64,6 @@ function Mmove(d){
 					n++;
 				}
 			}
-			//alert("1");
-			//alert(N[0][0]+N[0][1]+N[0][2]+N[0][3]+N[0][0]+N[1][1]+N[1][2]+N[1][3]+N[2][0]+N[2][1]+N[2][2]+N[2][3]+N[3][0]+N[3][1]+N[3][2]+N[3][3]+);
 			for(i = 0; i< 4; i++){
 				M[i][j] = N[i][j];
 			}
@@ -88,9 +91,24 @@ function Mmove(d){
 			}
 			//alert("5");
 		}
+		for (i = 0;i<4;i++){
+			for(j = 0;j<4;j++){
+				if(MOld[i][j]==M[i][j])
+					sameNumber++;
+			}
+		}
+		if (sameNumber != 16)
+			Generate2Or4();
 		break;
 		case 37:
 		var N = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
+		var MOld=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+		var sameNumber = 0;
+		for (i = 0;i<4;i++){
+			for(j = 0;j<4;j++){
+				MOld[i][j] = M[i][j];
+			}
+		}
 		for(i = 0; i < 4; i++){
 			var n = 0;
 			for(j = 0; j < 4; j++){
@@ -120,9 +138,24 @@ function Mmove(d){
 				M[i][j] = N[i][j];
 			}
 		}
+		for (i = 0;i<4;i++){
+			for(j = 0;j<4;j++){
+				if(MOld[i][j]==M[i][j])
+					sameNumber++;
+			}
+		}
+		if (sameNumber != 16)
+			Generate2Or4();
 		break;
 		case 39:
 		var N = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
+		var MOld=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+		var sameNumber = 0;
+		for (i = 0;i<4;i++){
+			for(j = 0;j<4;j++){
+				MOld[i][j] = M[i][j];
+			}
+		}
 		for(i = 3; i > -1; i--){
 			var n = 3;
 			for(j = 3; j > -1; j--){
@@ -152,9 +185,24 @@ function Mmove(d){
 				M[i][j] = N[i][j];
 			}
 		}
+		for (i = 0;i<4;i++){
+			for(j = 0;j<4;j++){
+				if(MOld[i][j]==M[i][j])
+					sameNumber++;
+			}
+		}
+		if (sameNumber != 16)
+			Generate2Or4();
 		break;
 		case 40:
 		var N = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
+		var MOld=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
+		var sameNumber = 0;
+		for (i = 0;i<4;i++){
+			for(j = 0;j<4;j++){
+				MOld[i][j] = M[i][j];
+			}
+		}
 		for(j = 3; j > -1; j--){
 			var n = 3;
 			for(i = 3; i > -1; i--){
@@ -184,6 +232,14 @@ function Mmove(d){
 				M[i][j] = N[i][j];
 			}
 		}
+		for (i = 0;i<4;i++){
+			for(j = 0;j<4;j++){
+				if(MOld[i][j]==M[i][j])
+					sameNumber++;
+			}
+		}
+		if (sameNumber != 16)
+			Generate2Or4();
 		break;
 		default:
 		break;
