@@ -52,7 +52,8 @@ function Generate2Or4(){
 }
 
 function Mmove(d){
-	if (d == 37){
+	switch(d){
+		case 37:
 		var N = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
 		for(i = 0; i < 4; i++){
 			var n = 0;
@@ -83,8 +84,8 @@ function Mmove(d){
 				M[i][j] = N[i][j];
 			}
 		}
-	}
-	else if (d == 38){
+		break;
+		case 38:
 		var N = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]];
 		for(j = 0; j < 4; j++){
 			var n = 0
@@ -115,8 +116,8 @@ function Mmove(d){
 				M[i][j] = N[i][j];
 			}
 		}
-	}
-	else if (d == 39){
+		break;
+		case 39:
 		var N = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
 		for(i = 3; i > -1; i--){
 			var n = 3;
@@ -147,8 +148,8 @@ function Mmove(d){
 				M[i][j] = N[i][j];
 			}
 		}
-	}
-	else if (d == 40){
+		break;
+		case 40:
 		var N = [[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0],[0, 0, 0, 0]];
 		for(j = 3; j > -1; j--){
 			var n = 3;
@@ -179,6 +180,7 @@ function Mmove(d){
 				M[i][j] = N[i][j];
 			}
 		}
+		break;
 	}
 }
 
